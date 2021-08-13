@@ -1,0 +1,51 @@
+<html>
+  <head>
+  	<title>CHR Editor 1.0</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+    <script src="sketchs/chr_editor.js"></script>
+  </head>
+  <body>
+    <main>
+    </main>
+    
+    <input type="file" id="file" />
+    <button id="read-file">Read File</button>
+
+  </body>
+
+  <script>
+
+    document.querySelector("#read-file").addEventListener('click', function() {
+      // no file selected to read
+      if(document.querySelector("#file").value == '') {
+        console.log('No file selected');
+        return;
+      }
+
+      var file = document.querySelector("#file").files[0];
+
+      print(file)
+
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        // binary data
+        const bnr = e.target.result;
+        console.log(bnr[5])
+        console.log(bnr[5].charCodeAt(0));
+        console.log(bnr[5].charCodeAt(0).toString(2).padStart(8,0));
+        console.log(bnr[5].charCodeAt(0).toString(16));
+      };
+
+//      for(let i=0; i<)
+
+
+      reader.onerror = function(e) {
+        // error occurred
+        console.log('Error : ' + e.type);
+      };
+      reader.readAsBinaryString(file);
+    });
+
+  </script>
+
+</html>
