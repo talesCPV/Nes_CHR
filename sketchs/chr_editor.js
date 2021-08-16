@@ -15,7 +15,11 @@ let cp_click = false;
 let count = 0;
 let bank_sel = 0;
 let bank_color = [];
-let bank_size = 15;
+let bank_size = 16;
+let palette = [[0,0,0],[180,30,0],[200,210,0],[20,140,62]];
+
+let testTile = ["00000011","00001111","00011111","00011111","00011100","00100100","00100110","01100110","00000000","00000000","00000000","00000000","00011111","00111111","00111111","01111111"];
+
 
 function setup() {
     createCanvas(screen[0], screen[1]);
@@ -36,6 +40,7 @@ function setup() {
 
 //    sld_tool = createSlider(0, 1, 0);
 //    sld_tool.position(110, 90);
+/*
     cmbTool = createSelect();
     cmbTool.position(120, 90);
     cmbTool.option('BRUSH');
@@ -45,7 +50,9 @@ function setup() {
     cmbTool.option('COPY');
     cmbTool.option('TURN');
     cmbTool.option('PASTE');
+*/
 
+/*
     sld_R = createSlider(0, 255, 50);
     sld_R.position(270, 10);
     sld_R.input(update_color);
@@ -60,9 +67,9 @@ function setup() {
     sld_X.position(560, 10);
     sld_Y = createSlider(1, 150, grid_size[1]);
     sld_Y.position(560, 35);
-    sld_Z = createSlider(4, 40, grid);
-    sld_Z.position(560, 60);
-
+//    sld_Z = createSlider(4, 40, grid);
+//    sld_Z.position(560, 60);
+*/
     input = createFileInput(open_file);
     input.position(25, 75);
 
@@ -70,6 +77,7 @@ function setup() {
     edtName.position(800, 50);
     edtName.elt.value = "object_name";
     edtName.size(170);
+/**    
     cmbPivot = createSelect();
     cmbPivot.position(800, 90);
     cmbPivot.option('X Left   | Y Top');
@@ -83,11 +91,11 @@ function setup() {
     cmbPivot.option('X Rigth  | Y Botton');
     cmbPivot.selected('X Center | Y Center');
     cmbPivot.changed(change_pivot);
-
+*/
     edtRGB = createInput();
     edtRGB.position(270, 90);
     edtRGB.size(120);
-    edtRGB.elt.value = sld_R.value()+","+sld_G.value()+","+sld_B.value();
+//    edtRGB.elt.value = sld_R.value()+","+sld_G.value()+","+sld_B.value();
     edtRGB.changed(apply_color);
 
     btnFlipX = createButton('Flip X');
@@ -117,7 +125,7 @@ function draw() {
         let y = grid_size[1] - 1 - (Math.floor((mouseY - header) / grid));
         if(mouseButton === LEFT){
           if(tool == "BRUSH"){
-            my_draw[x][y] = color;
+//            my_draw[x][y] = color;
             cp_click = false;
           }
         }else if(mouseButton === CENTER && y >= 0){
@@ -235,9 +243,9 @@ function mousePressed() { // only once on click
       for(let i=0; i<bank_color.length; i++){
         if(mouseX  >= 60*i+20 && mouseX < 60*i+70){
 
-          sld_R.elt.value = bank_color[i][0];
-          sld_G.elt.value = bank_color[i][1];
-          sld_B.elt.value = bank_color[i][2];
+//          sld_R.elt.value = bank_color[i][0];
+//          sld_G.elt.value = bank_color[i][1];
+//          sld_B.elt.value = bank_color[i][2];
 
           update_color();
 
@@ -254,41 +262,42 @@ function mousePressed() { // only once on click
 }
 
 function draw_header(){ // monta o cabeçalho com as ferramentas
-    const r = sld_R.value();
-    const g = sld_G.value();
-    const b = sld_B.value();
+//    const r = sld_R.value();
+//    const g = sld_G.value();
+//    const b = sld_B.value();
     const rgb = edtRGB.value();
 
-    color = [r,g,b];
-    grid = sld_Z.value();
+//    color = [r,g,b];
+//    grid = sld_Z.value();
 
 
     fill(0, 102, 153);
     noStroke();
-    text('R', 240, 17);
-    text('G', 240, 42);
-    text('B', 240, 67);
-    text("COLOR", 110, 75);
-    text("BCKGD", 175, 75);
+//    text('R', 240, 17);
+//    text('G', 240, 42);
+//    text('B', 240, 67);
+//    text("COLOR", 110, 75);
+//    text("BCKGD", 175, 75);
 
-    text("GRID X "+sld_X.value(), 460, 17);
-    text("GRID Y "+sld_Y.value(), 460, 42);
-    text("ZOOM "+sld_Z.value(), 460, 67);
-    text("Open:", 735, 32);
-    text("Name:", 735, 65);
-    text("Pivot:", 735, 105);
+//    text("GRID X "+sld_X.value(), 460, 17);
+//    text("GRID Y "+sld_Y.value(), 460, 42);
+//    text("ZOOM "+sld_Z.value(), 460, 67);
+//    text("Open:", 735, 32);
+//    text("Name:", 735, 65);
+//    text("Pivot:", 735, 105);
     fill(color)
     stroke(150);
-    rect(110,10, 55,45)
+//    rect(110,10, 55,45)
     fill(bg_color)
-    rect(175,10, 55,45)
-    tool = cmbTool.value();
+//    rect(175,10, 55,45)
+//    tool = cmbTool.value();
 
 }
 
 function draw_grid(){ // monta desenho na tela
   textSize(grid/2);
   const HEXA = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+  
   for(let i=0; i<grid_size[0]; i++){
     fill(0, 102, 153);
     noStroke();
@@ -308,9 +317,46 @@ function draw_grid(){ // monta desenho na tela
 //      text("  "+(grid_size[1] - j-1), 0, (header+j*grid) + 1.2*grid/2);
       text('  '+HEXA[index_j], 0, (header+j*grid) + 1.2*grid/2);
 
+     
+if(testTile.length > 100){
+
+
+
+  for(let t=0; t<8;t++){
+    for(let r=0; r<8; r++){
+      const x = t + i*16 + j*16;
+      const y = r;
+
+
+
+//      alert(testTile[x][y])
+
+
+      if(testTile[x][y] == '0'){ 
+        if(testTile[x+8][y] == '0'){ 
+          fill(palette[0]);
+        }else{
+          fill(palette[1]);
+        }
+      }else{
+        if(testTile[x+8][y] == '0'){ 
+          fill(palette[2]);
+        }else{
+          fill(palette[3]);
+        }
+      }
+      rect(r * (grid/8) + ((i + 1) * grid)  , t * (grid/8) + (j * grid + header) , grid/8, grid/8);
+      noFill()
+
+    }
+  }
+
+}
+
+
       stroke(150);
 
-        fill(my_draw[i][grid_size[1]- 1 - j]); // inverte o eixo Y
+//        fill(my_draw[i][grid_size[1]- 1 - j]); // inverte o eixo Y
         rect((i + 1) * grid,j * grid + header , grid, grid);
     }
   }
@@ -330,7 +376,7 @@ function draw_grid(){ // monta desenho na tela
 
 function new_file(N){ // novo arquivo => apaga tudo
   if (N==0 || confirm('Deseja apagar todo o desenho??')) {
-
+/*
     let x = screen[0];
     let y = screen[1];
 
@@ -355,7 +401,8 @@ function new_file(N){ // novo arquivo => apaga tudo
           my_draw[i].push(color);
       }
     }
-  }
+*/    
+  }  
 }
 
 function open_file(files) {
@@ -380,15 +427,20 @@ function open_file(files) {
 //      console.log(bin[5].charCodeAt(0).toString(16));   //hexa
 
       let i=0;
+      testTile = [];
+
       while(bin[i] != '\n'){
         if(i>1000){
           break;
         }
-
-        console.log(bin[i].charCodeAt(0).toString(2).padStart(8,0)); //binary    
+        testTile.push(bin[i].charCodeAt(0).toString(2).padStart(8,0));
+//        console.log(i)
+//        console.log(bin[i].charCodeAt(0).toString(2).padStart(8,0)); //binary    
 
         i++;
       }
+
+      tile(testTile);
 
       console.log('tamanho da linha: '+i)
 
@@ -611,7 +663,7 @@ function apply_color(){
 }
 
 function update_color(){
-  edtRGB.elt.value = sld_R.value()+","+sld_G.value()+","+sld_B.value();
+//  edtRGB.elt.value = sld_R.value()+","+sld_G.value()+","+sld_B.value();
 }
 
 function add_undo(){
@@ -724,15 +776,28 @@ function draw_line(){
 }
 
 function bank(){
+  let space = 0;
+  const size = 40;
 
   for(let i=0; i<bank_color.length; i++){
   
+    if(i%4 == 0){
+      space += size * 0.3;
+
+    }
+
     if(i == bank_sel){
       fill(0);
-    rect(60*i + 15,125,60,60);      
+    rect(size*i + 25 + space - (size*0.1),125,size*1.2,size*1.2);      
     }    
+    
     fill(bank_color[i]);    
-    rect(60*i + 20,130,50,50);
+    rect(size*i + 25 + space,130,size,size);
   }
+
+}
+
+function tile(obj){
+  console.log(obj)
 
 }
