@@ -16,7 +16,7 @@ git commit -m "by_script -> ${now}"
 
 git push -f origin master
 
-Username: talesCPV
-Password: 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
+Username: "talesCPV"
+Password: "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"
 
 
