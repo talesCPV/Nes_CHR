@@ -1,10 +1,10 @@
 #!/bin/bash
 # Upload files to Github - https://github.com/talesCPV/Nes_CHR.git
-# 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
+# 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
 
 now=$(date)
 
-curl -H https://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:x-oauth-basic@github.com/talesCPV/Nes_CHR.git
+curl -H https://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:x-oauth-basic@github.com/talesCPV/Nes_CHR.git
 
 git init
 
@@ -18,5 +18,5 @@ git push -f origin master
 
 
 
-# https://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:x-oauth-basic@github.com
-# curl -H 'Authorization: token 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' https://github.com/talesCPV/Nes_CHR.git
+# https://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:x-oauth-basic@github.com
+# curl -H 'Authorization: token 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' https://github.com/talesCPV/Nes_CHR.git
