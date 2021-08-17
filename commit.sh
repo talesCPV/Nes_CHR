@@ -4,7 +4,7 @@
 
 now=$(date)
 
-curl -H 'Authorization: token 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' https://github.com/talesCPV/Nes_CHR.git
+curl -H "Authorization: token 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" https://github.com/talesCPV/Nes_CHR.git
 
 git init
 
@@ -16,7 +16,7 @@ git commit -m "by_script -> ${now}"
 
 git push -f origin master
 
-Username: "talesCPV"
-Password: "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"
 
 
+# https://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:x-oauth-basic@github.com
+# curl -H 'Authorization: token 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' https://github.com/talesCPV/Nes_CHR.git
