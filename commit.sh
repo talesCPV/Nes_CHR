@@ -10,7 +10,7 @@ git init
 
 git add *
 
-git remote add origin "https://github.com/talesCPV/Nes_CHR.git"
+git remote add origin "https://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:x-oauth-basic@github.com/talesCPV/Nes_CHR.git"
 
 git commit -m "by_script -> ${now}"
 
