@@ -4,7 +4,7 @@
 
 now=$(date)
 
-curl -H https://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:x-oauth-basic@github.com/talesCPV/Nes_CHR.git
+#curl -H https://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:x-oauth-basic@github.com/talesCPV/Nes_CHR.git
 
 git init
 
